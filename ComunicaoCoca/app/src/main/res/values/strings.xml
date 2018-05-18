@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Comunicação Coca</string>
+    <string name="title_activity_cadastro">CadastroActivity</string>
 </resources>
