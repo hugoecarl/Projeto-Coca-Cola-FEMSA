@@ -106,7 +106,7 @@ public class CadastrosActivity extends AppCompatActivity {
                     }catch (FirebaseAuthWeakPasswordException e){
                         erroExcecao = "Digite uma senha mais forte, contendo no mínimo 8 caracteres de letras e números";
                     }catch (FirebaseAuthInvalidCredentialsException e) {
-                        erroExcecao = "O e-mail digitado é inalido, digite um novo e-mail";
+                        erroExcecao = "O e-mail digitado é invalido, digite um novo e-mail";
                     }
                     catch (FirebaseAuthUserCollisionException e) {
                         erroExcecao = "O ID digitado já está cadastrado no sistema";
