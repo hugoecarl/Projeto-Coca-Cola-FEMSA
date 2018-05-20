@@ -42,12 +42,12 @@ public class LoginActivity extends AppCompatActivity {
                 if (!edtEmail.getText().toString().equals("") && !edtSenha.getText().toString().equals("")){
 
                     usuarios = new Usuarios();
-                    usuarios.setEmail(edtEmail.getText().toString()+ "@gmail.com");
+                    usuarios.setEmail(edtEmail.getText().toString()+ "@coca.com");
                     usuarios.setSenha(edtSenha.getText().toString());
 
                     validarLogin();
                 } else {
-                    Toast.makeText(LoginActivity.this, "Preencha os campos de e-mail e senha!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Preencha os campos de ID e senha!", Toast.LENGTH_SHORT).show();
                 }
 
             }

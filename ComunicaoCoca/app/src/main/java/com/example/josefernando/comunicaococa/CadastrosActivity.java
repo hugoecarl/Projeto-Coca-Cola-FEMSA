@@ -81,7 +81,7 @@ public class CadastrosActivity extends AppCompatActivity {
 
         autenticacao = ConfiguracaoFirebase.getFirebaseAutenticacao();
         autenticacao.createUserWithEmailAndPassword(
-                usuarios.getEmail(),
+                usuarios.getEmail()+"@coca.com",
                 usuarios.getSenha()
         ).addOnCompleteListener(CadastrosActivity.this, new OnCompleteListener<AuthResult>() {
             @Override
