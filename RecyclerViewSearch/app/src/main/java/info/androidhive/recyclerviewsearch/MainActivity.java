@@ -1,6 +1,7 @@
 package info.androidhive.recyclerviewsearch;
 
 
+import android.app.ListActivity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.graphics.Color;
@@ -22,12 +23,15 @@ import android.widget.Toast;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements ContactsAdapter.ContactsAdapterListener {
@@ -39,6 +43,11 @@ public class MainActivity extends AppCompatActivity implements ContactsAdapter.C
 
     // url to fetch contacts json
     private static final String URL = "https://api.androidhive.info/json/contacts.json";
+
+    private DatabaseReference mDatabase_title,mDatabase_content;
+
+    private LinkedList<String> listaM = new LinkedList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,12 +74,16 @@ public class MainActivity extends AppCompatActivity implements ContactsAdapter.C
         recyclerView.setAdapter(mAdapter);
 
         fetchContacts();
+
     }
 
     /**
      * fetches json by making http calls
      */
     private void fetchContacts() {
+        //mDatabase_title = FirebaseDatabase.getInstance().getReference().child("Database").child("msg0").child("title");
+        //mDatabase_content = FirebaseDatabase.getInstance().getReference().child("Database").child("msg0").child("content");
+
         JsonArrayRequest request = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
@@ -81,10 +94,10 @@ public class MainActivity extends AppCompatActivity implements ContactsAdapter.C
 
                         List<Contact> items = new Gson().fromJson(response.toString(), new TypeToken<List<Contact>>() {}.getType());
 
+
                         // adding contacts to contacts list
                         contactList.clear();
                         contactList.addAll(items);
-
                         // refreshing recycler view
                         mAdapter.notifyDataSetChanged();
                     }

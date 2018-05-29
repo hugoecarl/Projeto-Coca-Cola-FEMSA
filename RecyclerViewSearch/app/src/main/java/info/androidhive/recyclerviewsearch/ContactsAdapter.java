@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +28,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.MyView
     private List<Contact> contactList;
     private List<Contact> contactListFiltered;
     private ContactsAdapterListener listener;
+    private DatabaseReference mDatabase_title,mDatabase_content;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView name, phone;
@@ -66,8 +69,10 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.MyView
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         final Contact contact = contactListFiltered.get(position);
-        holder.name.setText(contact.getName());
-        holder.phone.setText(contact.getPhone());
+        mDatabase_title = FirebaseDatabase.getInstance().getReference().child("Database").child("msg0").child("title");
+        mDatabase_content = FirebaseDatabase.getInstance().getReference().child("Database").child("msg0").child("content");
+        holder.name.setText(mDatabase_title.toString());
+        holder.phone.setText(mDatabase_content.toString());
 
         Glide.with(context)
                 .load(contact.getImage())
