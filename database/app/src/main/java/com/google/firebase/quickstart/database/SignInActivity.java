@@ -67,7 +67,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
         }
 
         showProgressDialog();
-        String email = mEmailField.getText().toString();
+        String email = mEmailField.getText().toString()+"@coca.com";
         String password = mPasswordField.getText().toString();
 
         mAuth.signInWithEmailAndPassword(email, password)

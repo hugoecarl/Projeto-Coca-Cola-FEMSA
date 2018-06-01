@@ -31,8 +31,8 @@ public class Post {
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
         result.put("uid", uid);
-        result.put("tipo", title);
-        result.put("msg", body);
+        result.put("title", title);
+        result.put("body", body);
         result.put("starCount", starCount);
         result.put("stars", stars);
 
