@@ -17,6 +17,7 @@
 package com.google.firebase.quickstart.database;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -43,6 +44,9 @@ public class  MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Fonts
+        Typeface font = Typeface.createFromAsset(getAssets(),"gotham.ttf");
+
         // Create the adapter that will return a fragment for each section
         mPagerAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
             private final Fragment[] mFragments = new Fragment[] {
@@ -53,7 +57,7 @@ public class  MainActivity extends BaseActivity {
             private final String[] mFragmentNames = new String[] {
                     "Recentes",
                     "Eventos",
-                    "Fórum"
+                    "Vagas"
             };
             @Override
             public Fragment getItem(int position) {
@@ -68,11 +72,15 @@ public class  MainActivity extends BaseActivity {
                 return mFragmentNames[position];
             }
         };
+
         // Set up the ViewPager with the sections adapter.
         mViewPager = findViewById(R.id.container);
         mViewPager.setAdapter(mPagerAdapter);
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+
+
+
 
     }
 

@@ -1,5 +1,6 @@
 package com.google.firebase.quickstart.database;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.text.TextUtils;
@@ -37,6 +38,9 @@ public class NewPostActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_post);
 
+        //Fonts
+        Typeface font = Typeface.createFromAsset(getAssets(),"gotham.ttf");
+
         // [START initialize_database_ref]
         mDatabase = FirebaseDatabase.getInstance().getReference();
         // [END initialize_database_ref]
@@ -51,6 +55,9 @@ public class NewPostActivity extends BaseActivity {
                 submitPost();
             }
         });
+
+        mTitleField.setTypeface(font);
+        mBodyField.setTypeface(font);
     }
 
     private void submitPost() {

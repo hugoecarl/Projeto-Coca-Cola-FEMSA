@@ -1,6 +1,7 @@
 package com.google.firebase.quickstart.database;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
@@ -44,6 +45,13 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
         mPasswordField = findViewById(R.id.field_password);
         mSignInButton = findViewById(R.id.button_sign_in);
         mSignUpButton = findViewById(R.id.button_sign_up);
+
+        //Fonts
+        Typeface font = Typeface.createFromAsset(getAssets(),"gotham.ttf");
+        mEmailField.setTypeface(font);
+        mPasswordField.setTypeface(font);
+        mSignInButton.setTypeface(font);
+        mSignUpButton.setTypeface(font);
 
         // Click listeners
         mSignInButton.setOnClickListener(this);

@@ -1,6 +1,7 @@
 package com.google.firebase.quickstart.database;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -72,6 +73,11 @@ public class   PostDetailActivity extends BaseActivity implements View.OnClickLi
 
         mCommentButton.setOnClickListener(this);
         mCommentsRecycler.setLayoutManager(new LinearLayoutManager(this));
+
+        //Fonts
+        Typeface font = Typeface.createFromAsset(getAssets(),"gotham.ttf");
+        mTitleView.setTypeface(font);
+        mAuthorView.setTypeface(font);
 
     }
 
