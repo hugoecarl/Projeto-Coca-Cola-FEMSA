@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    tools:context="com.google.firebase.quickstart.database.PostDetailActivity">
+
+    <include
+        android:id="@+id/post_author_layout"
+        layout="@layout/include_post_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true" />
+
+    <include
+        android:id="@+id/post_text_layout"
+        layout="@layout/include_post_text"
+        android:layout_width="379dp"
+        android:layout_height="302dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/post_author_layout"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp" />
+
+    <ImageView
+        android:id="@+id/imagePost"
+        android:layout_width="match_parent"
+        android:layout_height="282dp"
+        android:layout_above="@+id/botton3"
+        android:layout_alignParentStart="true"
+        android:src="@mipmap/ic_launcher" />
+
+    <LinearLayout
+        android:id="@+id/comment_form"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp"
+        android:orientation="horizontal"
+        android:weightSum="1.0">
+        <!--
+        <EditText
+            android:id="@+id/field_comment_text"
+            android:layout_width="16dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.7"
+            android:hint="Escrava um comentário..."
+            android:maxLines="1" />
+-->
+        <Button
+            android:id="@+id/button_post_comment"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:text="Enviar" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_comments"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_weight="0.3"
+            tools:listitem="@layout/item_comment" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/botton3"
+        android:layout_width="match_parent"
+        android:layout_height="79dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp"
+        app:srcCompat="@drawable/coca_ale" />
+
+
+</RelativeLayout>
