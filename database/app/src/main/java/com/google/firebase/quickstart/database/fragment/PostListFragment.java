@@ -102,7 +102,6 @@ public abstract class PostListFragment extends Fragment {
                     public void onClick(View starView) {
                         // Need to write to both places the post is stored
                         DatabaseReference globalPostRef = mDatabase.child("Database").child(postRef.getKey());
-                        DatabaseReference userPostRef = mDatabase.child("user-posts").child(model.uid).child(postRef.getKey());
                     }
                 });
             }
@@ -124,11 +123,6 @@ public abstract class PostListFragment extends Fragment {
         if (mAdapter != null) {
             mAdapter.stopListening();
         }
-    }
-
-
-    public String getUid() {
-        return FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
     public abstract Query getQuery(DatabaseReference databaseReference);
