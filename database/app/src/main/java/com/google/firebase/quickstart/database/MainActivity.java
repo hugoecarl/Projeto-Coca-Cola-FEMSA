@@ -28,9 +28,12 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.quickstart.database.fragment.Announce;
+import com.google.firebase.quickstart.database.fragment.Events;
 import com.google.firebase.quickstart.database.fragment.MyPostsFragment;
 import com.google.firebase.quickstart.database.fragment.MyTopPostsFragment;
 import com.google.firebase.quickstart.database.fragment.RecentPostsFragment;
+import com.google.firebase.quickstart.database.fragment.Recruitment;
 
 public class  MainActivity extends BaseActivity {
 
@@ -51,11 +54,13 @@ public class  MainActivity extends BaseActivity {
         mPagerAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
             private final Fragment[] mFragments = new Fragment[] {
                     new RecentPostsFragment(),
-                    new MyPostsFragment(),
-                    new MyTopPostsFragment(),
+                    new Announce(),
+                    new Events(),
+                    new Recruitment()
             };
             private final String[] mFragmentNames = new String[] {
                     "Recentes",
+                    "Avisos",
                     "Eventos",
                     "Vagas"
             };
