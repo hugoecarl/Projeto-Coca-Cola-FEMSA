@@ -14,15 +14,18 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="381dp"
-        android:layout_below="@+id/tabs" />
+        android:layout_height="450dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true" />
 
     <ImageView
         android:id="@+id/botton3"
         android:layout_width="match_parent"
         android:layout_height="78dp"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
         android:adjustViewBounds="false"
         app:srcCompat="@drawable/coca_ale" />
+
 
 </RelativeLayout>
