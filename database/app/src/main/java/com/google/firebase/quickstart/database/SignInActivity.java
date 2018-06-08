@@ -3,6 +3,7 @@ package com.google.firebase.quickstart.database;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
@@ -16,8 +17,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.quickstart.database.models.User;
 
 public class SignInActivity extends BaseActivity implements View.OnClickListener {
@@ -31,6 +35,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
     private EditText mPasswordField;
     private Button mSignInButton;
     private Button mSignUpButton;
+    private DataSnapshot snap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +61,16 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
         // Click listeners
         mSignInButton.setOnClickListener(this);
         mSignUpButton.setOnClickListener(this);
+
+        MyListener listener = new MyListener(this);
+
+        mDatabase.child("Colaborators").child("funcionarios").addValueEventListener(listener);
+
+
+        }
+
+    public void setSnapshot(DataSnapshot dataSnapshot){
+        this.snap = dataSnapshot;
     }
 
     @Override
@@ -77,6 +92,9 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
         showProgressDialog();
         String email = mEmailField.getText().toString()+"@coca.com";
         String password = mPasswordField.getText().toString();
+
+
+
 
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -111,6 +129,8 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Log.d(TAG, "createUser:onComplete:" + task.isSuccessful());
                         hideProgressDialog();
+
+
 
                         if (task.isSuccessful()) {
                             onAuthSuccess(task.getResult().getUser());
@@ -174,7 +194,27 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
         if (i == R.id.button_sign_in) {
             signIn();
         } else if (i == R.id.button_sign_up) {
-            signUp();
+
+
+            boolean iscolaborator = false;
+            String id = mEmailField.getText().toString();
+            String baseid;
+
+            for(DataSnapshot snaps : snap.getChildren()) {
+                baseid = snaps.child("br").getValue().toString();
+                if (baseid.equals(id)) {
+                                iscolaborator = true;
+                            }
+                        }
+
+
+
+            if(iscolaborator){
+                signUp();
+            }
+            else{
+                Toast.makeText(SignInActivity.this,"FUCK ", Toast.LENGTH_LONG).show();
+            }
         }
     }
 }
