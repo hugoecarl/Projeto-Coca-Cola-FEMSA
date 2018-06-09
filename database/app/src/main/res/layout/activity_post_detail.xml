@@ -79,6 +79,7 @@
         android:layout_height="79dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="0dp"
+        android:background="@drawable/coca_ale"
         app:srcCompat="@drawable/coca_ale" />
 
 
