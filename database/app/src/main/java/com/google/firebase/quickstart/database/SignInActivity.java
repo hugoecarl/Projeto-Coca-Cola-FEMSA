@@ -16,8 +16,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.quickstart.database.models.User;
 import com.google.firebase.quickstart.database.fragment.Authentication;
 
@@ -60,6 +63,11 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
 
 
     }
+
+
+
+
+
 
     @Override
     public void onStart() {
@@ -179,22 +187,36 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
     @Override
     public void onClick(View v) {
         int i = v.getId();
-        Authentication auth = new Authentication();
-        String id = mEmailField.getText().toString();
-        boolean x = auth.getQuery(mDatabase).equals(id);
-        if (i == R.id.button_sign_in) {
+//      Authentication auth = new Authentication();
+        //String id = mEmailField.getText().toString();
+
+
+
+
+            if (i == R.id.button_sign_in) {
             signIn();
-        } else if (i == R.id.button_sign_up) {
-            if(x){
-                signUp();
             }
-            else{
-                System.out.println(auth.getQuery(mDatabase).equalTo(id)
-                );
-                Toast.makeText(SignInActivity.this,"fuck", Toast.LENGTH_LONG).show();
-            }
+            else if (i == R.id.button_sign_up) {
+
+                mDatabase.child("Colaborators").child("funcionarios").addListenerForSingleValueEvent(new ValueEventListener() {
+                    String id = mEmailField.getText().toString();
+
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.hasChild(id)) {
+                            signUp();
+                            }
+                        else{
+                            Toast.makeText(SignInActivity.this,"fuck1", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        Toast.makeText(SignInActivity.this,"fuck2", Toast.LENGTH_LONG).show();
+                        }
+                });
 
 
-        }
+            }
     }
 }
