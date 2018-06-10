@@ -26,7 +26,7 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.quickstart.database.fragment.Announce;
 import com.google.firebase.quickstart.database.fragment.Events;
@@ -38,7 +38,7 @@ import com.google.firebase.quickstart.database.fragment.Recruitment;
 public class  MainActivity extends BaseActivity {
 
     private static final String TAG = "MainActivity";
-
+    private FirebaseAnalytics mFBanalytics;
     private FragmentPagerAdapter mPagerAdapter;
     private ViewPager mViewPager;
 
@@ -46,6 +46,8 @@ public class  MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mFBanalytics = FirebaseAnalytics.getInstance(this);
 
         //Fonts
         Typeface font = Typeface.createFromAsset(getAssets(),"gotham.ttf");
