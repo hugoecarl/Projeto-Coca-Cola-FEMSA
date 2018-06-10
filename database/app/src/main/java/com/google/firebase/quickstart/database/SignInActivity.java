@@ -16,8 +16,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.quickstart.database.models.User;
 
 public class SignInActivity extends BaseActivity implements View.OnClickListener {
@@ -174,7 +177,23 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
         if (i == R.id.button_sign_in) {
             signIn();
         } else if (i == R.id.button_sign_up) {
-            signUp();
-        }
+
+            mDatabase.child("Colaborators").child("funcionarios").addListenerForSingleValueEvent(new ValueEventListener() {
+                String id = mEmailField.getText().toString();
+
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.hasChild(id)) {
+                        signUp();
+                    }
+                    else{
+                        Toast.makeText(SignInActivity.this,"ID de colaborador inválido", Toast.LENGTH_LONG).show();
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(SignInActivity.this,"error(client-server)", Toast.LENGTH_LONG).show();
+                }
+            });
     }
-}
+}}
