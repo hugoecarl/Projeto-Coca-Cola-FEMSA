@@ -177,13 +177,14 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
         if (i == R.id.button_sign_in) {
             signIn();
         } else if (i == R.id.button_sign_up) {
-
+            showProgressDialog();
             mDatabase.child("Colaborators").child("funcionarios").addListenerForSingleValueEvent(new ValueEventListener() {
                 String id = mEmailField.getText().toString();
 
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if (dataSnapshot.hasChild(id)) {
+
                         signUp();
                     }
                     else{
