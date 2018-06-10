@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.quickstart.database.models.User;
+import com.google.firebase.quickstart.database.fragment.Authentication;
 
 public class SignInActivity extends BaseActivity implements View.OnClickListener {
 
@@ -56,6 +57,8 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
         // Click listeners
         mSignInButton.setOnClickListener(this);
         mSignUpButton.setOnClickListener(this);
+
+
     }
 
     @Override
@@ -96,6 +99,9 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
     }
 
     private void signUp() {
+
+
+
         Log.d(TAG, "signUp");
         if (!validateForm()) {
             return;
@@ -111,6 +117,8 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Log.d(TAG, "createUser:onComplete:" + task.isSuccessful());
                         hideProgressDialog();
+
+
 
                         if (task.isSuccessful()) {
                             onAuthSuccess(task.getResult().getUser());
@@ -171,10 +179,22 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
     @Override
     public void onClick(View v) {
         int i = v.getId();
+        Authentication auth = new Authentication();
+        String id = mEmailField.getText().toString();
+        boolean x = auth.getQuery(mDatabase).equals(id);
         if (i == R.id.button_sign_in) {
             signIn();
         } else if (i == R.id.button_sign_up) {
-            signUp();
+            if(x){
+                signUp();
+            }
+            else{
+                System.out.println(auth.getQuery(mDatabase).equalTo(id)
+                );
+                Toast.makeText(SignInActivity.this,"fuck", Toast.LENGTH_LONG).show();
+            }
+
+
         }
     }
 }
