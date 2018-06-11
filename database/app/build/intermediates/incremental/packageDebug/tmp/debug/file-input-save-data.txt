@@ -1,0 +1,19 @@
+#Internal package file, do not edit.
+#Mon Jun 04 22:50:39 BRT 2018
+1.base=C\:\\Users\\Usuario\\Desktop\\Insper\\2018\\DES\\P4\\Projeto-Coca-Cola-FEMSA-\\database\\app\\build\\intermediates\\assets\\debug
+2.path=vagroundedlight.ttf
+0.baseType=DIRECTORY
+3.baseType=DIRECTORY
+2.base=C\:\\Users\\Usuario\\Desktop\\Insper\\2018\\DES\\P4\\Projeto-Coca-Cola-FEMSA-\\database\\app\\build\\intermediates\\assets\\debug
+3.set=ASSET
+2.set=ASSET
+1.baseType=DIRECTORY
+3.path=gotham.ttf
+count=4
+1.set=ASSET
+0.path=classes.dex
+3.base=C\:\\Users\\Usuario\\Desktop\\Insper\\2018\\DES\\P4\\Projeto-Coca-Cola-FEMSA-\\database\\app\\build\\intermediates\\assets\\debug
+0.set=DEX
+0.base=C\:\\Users\\Usuario\\Desktop\\Insper\\2018\\DES\\P4\\Projeto-Coca-Cola-FEMSA-\\database\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+2.baseType=DIRECTORY
+1.path=vagroundedbold.ttf

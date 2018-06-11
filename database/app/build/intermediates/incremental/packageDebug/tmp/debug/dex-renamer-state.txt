@@ -1,0 +1,4 @@
+#Sat Jun 09 10:16:36 BRT 2018
+base.0=C\:\\Users\\Usuario\\Desktop\\Insper\\2018\\DES\\P4\\Projeto-Coca-Cola-FEMSA-\\database\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+path.0=classes.dex
+renamed.0=classes.dex
