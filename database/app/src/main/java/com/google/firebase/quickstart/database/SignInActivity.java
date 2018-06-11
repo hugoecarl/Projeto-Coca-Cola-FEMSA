@@ -91,7 +91,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
                         if (task.isSuccessful()) {
                             onAuthSuccess(task.getResult().getUser());
                         } else {
-                            Toast.makeText(SignInActivity.this, "Sign In Failed",
+                            Toast.makeText(SignInActivity.this, "Login inválido",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -118,7 +118,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
                         if (task.isSuccessful()) {
                             onAuthSuccess(task.getResult().getUser());
                         } else {
-                            Toast.makeText(SignInActivity.this, "Sign Up Failed",
+                            Toast.makeText(SignInActivity.this, "Cadastro existente",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -126,35 +126,26 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
     }
 
     private void onAuthSuccess(FirebaseUser user) {
-        String username = usernameFromEmail(user.getEmail());
 
-        // Write new user
-        writeNewUser(user.getUid(), username, user.getEmail());
 
         // Go to MainActivity
         startActivity(new Intent(SignInActivity.this, MainActivity.class));
         finish();
     }
 
-    private String usernameFromEmail(String email) {
-        if (email.contains("@")) {
-            return email.split("@")[0];
-        } else {
-            return email;
-        }
-    }
+
 
     private boolean validateForm() {
         boolean result = true;
         if (TextUtils.isEmpty(mEmailField.getText().toString())) {
-            mEmailField.setError("Required");
+            mEmailField.setError("Coloque seu ID");
             result = false;
         } else {
             mEmailField.setError(null);
         }
 
         if (TextUtils.isEmpty(mPasswordField.getText().toString())) {
-            mPasswordField.setError("Required");
+            mPasswordField.setError("Coloque sua senha");
             result = false;
         } else {
             mPasswordField.setError(null);
@@ -163,13 +154,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
         return result;
     }
 
-    // [START basic_write]
-    private void writeNewUser(String userId, String name, String email) {
-        User user = new User(name, email);
 
-        mDatabase.child("users").child(userId).setValue(user);
-    }
-    // [END basic_write]
 
     @Override
     public void onClick(View v) {
@@ -178,16 +163,18 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
             signIn();
         } else if (i == R.id.button_sign_up) {
             showProgressDialog();
+            //checks if the user is a colaborators
             mDatabase.child("Colaborators").child("funcionarios").addListenerForSingleValueEvent(new ValueEventListener() {
                 String id = mEmailField.getText().toString();
 
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if (dataSnapshot.hasChild(id)) {
-
+                        //register and go to main
                         signUp();
                     }
                     else{
+                        hideProgressDialog();
                         Toast.makeText(SignInActivity.this,"ID de colaborador inválido", Toast.LENGTH_LONG).show();
                     }
                 }
