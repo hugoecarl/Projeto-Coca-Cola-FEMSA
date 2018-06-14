@@ -10,7 +10,6 @@ import java.util.Map;
 @IgnoreExtraProperties
 public class Post {
 
-    public String uid;
     public String title;
     public String body;
     public String img;
@@ -20,7 +19,6 @@ public class Post {
     }
 
     public Post(String uid, String author, String title, String body, String img) {
-        this.uid = uid;
         this.title = title;
         this.body = body;
         this.img = img;
@@ -30,7 +28,6 @@ public class Post {
     @Exclude
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
-        result.put("uid", uid);
         result.put("title", title);
         result.put("body", body);
         result.put("img", img);

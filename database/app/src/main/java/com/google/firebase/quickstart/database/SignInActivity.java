@@ -127,13 +127,10 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
 
     private void onAuthSuccess(FirebaseUser user) {
 
-
         // Go to MainActivity
         startActivity(new Intent(SignInActivity.this, MainActivity.class));
         finish();
     }
-
-
 
     private boolean validateForm() {
         boolean result = true;

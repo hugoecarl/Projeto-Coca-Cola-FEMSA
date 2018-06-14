@@ -17,7 +17,6 @@
 package com.google.firebase.quickstart.database;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -25,13 +24,10 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.quickstart.database.fragment.Announce;
 import com.google.firebase.quickstart.database.fragment.Events;
-import com.google.firebase.quickstart.database.fragment.MyPostsFragment;
-import com.google.firebase.quickstart.database.fragment.MyTopPostsFragment;
 import com.google.firebase.quickstart.database.fragment.RecentPostsFragment;
 import com.google.firebase.quickstart.database.fragment.Recruitment;
 
@@ -48,9 +44,6 @@ public class  MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
 
         mFBanalytics = FirebaseAnalytics.getInstance(this);
-
-        //Fonts
-        Typeface font = Typeface.createFromAsset(getAssets(),"gotham.ttf");
 
         // Create the adapter that will return a fragment for each section
         mPagerAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
