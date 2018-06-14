@@ -9,13 +9,11 @@ public class RecentPostsFragment extends PostListFragment {
 
     @Override
     public Query getQuery(DatabaseReference databaseReference) {
-        // [START recent_posts_query]
-        // Last 100 posts, these are automatically the 100 most recent
-        // due to sorting by push() keys
-        Query recentPostsQuery = databaseReference.child("Database")
-                .limitToFirst(100);
-        // [END recent_posts_query]
 
-        return recentPostsQuery;
+        Query RecentPostsQuery = databaseReference.child("Database")
+                .limitToFirst(100);
+
+
+        return RecentPostsQuery;
     }
 }
